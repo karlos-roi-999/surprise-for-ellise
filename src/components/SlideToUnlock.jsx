@@ -18,7 +18,8 @@ import "./SlideToUnlock.css";
  */
 export default function SlideToUnlock({
   label = "Open for your surprise 🦫",
-  onUnlock = () => {},
+  onUnlock = () => { },
+  onRemoved = () => { },
   width = 340,
   height = 64,
   resetKey = 0,
@@ -152,13 +153,13 @@ export default function SlideToUnlock({
   const thumbTransition = dragging
     ? "none"
     : settlingForward
-    ? "transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1)"
-    : "transform 380ms cubic-bezier(0.34, 1.3, 0.64, 1)";
+      ? "transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1)"
+      : "transform 380ms cubic-bezier(0.34, 1.3, 0.64, 1)";
   const fillTransition = dragging
     ? "none"
     : settlingForward
-    ? "width 220ms cubic-bezier(0.2, 0.9, 0.3, 1)"
-    : "width 380ms cubic-bezier(0.34, 1.3, 0.64, 1)";
+      ? "width 220ms cubic-bezier(0.2, 0.9, 0.3, 1)"
+      : "width 380ms cubic-bezier(0.34, 1.3, 0.64, 1)";
 
   const fillWidth = x + thumbSize / 2 + 4;
 
@@ -173,6 +174,7 @@ export default function SlideToUnlock({
         onAnimationEnd={(e) => {
           if (e.animationName === "stu-fadeout") {
             setRemoved(true);
+            onRemoved();
           }
         }}
       >
@@ -200,9 +202,8 @@ export default function SlideToUnlock({
           disabled={unlocked}
           onMouseDown={handlePointerDown}
           onTouchStart={handlePointerDown}
-          className={`stu-thumb ${dragging ? "is-dragging" : ""} ${
-            unlocked ? "is-unlocked" : ""
-          }`}
+          className={`stu-thumb ${dragging ? "is-dragging" : ""} ${unlocked ? "is-unlocked" : ""
+            }`}
           style={{
             width: thumbSize,
             height: thumbSize,
