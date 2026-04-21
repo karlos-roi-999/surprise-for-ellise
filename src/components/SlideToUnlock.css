@@ -1,0 +1,169 @@
+.stu-root {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.stu-track {
+  position: relative;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* NEW – base z-index for stacking */
+  z-index: 0;
+}
+
+/* NEW – when unlocked, expand the track to fill the viewport after a 0.9s delay */
+.stu-track:has(.stu-thumb.is-unlocked) {
+  z-index: 9999;
+  box-shadow: none;
+  border-color: transparent;
+  animation:
+    stu-expand 900ms ease-in-out 350ms forwards,
+    stu-fadeout 900ms ease-out 1700ms forwards;
+}
+
+/* NEW – smooth scale-up animation (uses transform for GPU-composited smoothness) */
+@keyframes stu-expand {
+  0% {
+    transform: scale(1);
+    border-radius: 9999px;
+  }
+  100% {
+    transform: scaleY(35) scaleX(18.25);
+    border-radius: 0;
+  }
+}
+
+/* NEW – fade out after the expand completes, then hide */
+@keyframes stu-fadeout {
+  0% {
+    transform: scale(50);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(50);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* NEW – fade out the thumb during the 0.9s delay (before expansion starts) */
+.stu-track:has(.stu-thumb.is-unlocked) .stu-thumb {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  pointer-events: none;
+}
+
+/* NEW – fade out the label during the 0.9s delay */
+.stu-track:has(.stu-thumb.is-unlocked) .stu-label {
+  opacity: 0 !important;
+  transition: opacity 300ms ease-out;
+}
+
+/* NEW – expand fill to cover the track before scaling begins */
+.stu-track:has(.stu-thumb.is-unlocked) .stu-fill {
+  width: 100% !important;
+  height: 100%;
+  border-radius: 9999px;
+  opacity: 1;
+  transition: width 400ms ease-out;
+}
+.stu-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.14) 60%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  pointer-events: none;
+  will-change: width;
+}
+.stu-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 180ms ease-out;
+}
+.stu-label-text {
+  position: relative;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgb(199, 156, 156) 50%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: stu-shimmer 2.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stu-label-text {
+    animation: none;
+    color: rgba(255, 255, 255, 0.6);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+  }
+}
+@keyframes stu-shimmer {
+  0%   { background-position: 120% 0; }
+  100% { background-position: -20% 0; }
+}
+.stu-thumb {
+  position: absolute;
+  top: 4px; left: 4px;
+  border: none; padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #fdfdfd 0%, #e9e9ec 100%);
+  color: #1c1c1e;
+  cursor: grab;
+  will-change: transform;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -1px 1px rgba(0, 0, 0, 0.08) inset,
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    0 6px 14px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 160ms ease-out, background 200ms ease-out;
+}
+.stu-thumb.is-dragging {
+  cursor: grabbing;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -1px 1px rgba(0, 0, 0, 0.08) inset,
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    0 10px 22px rgba(0, 0, 0, 0.35);
+}
+.stu-thumb.is-unlocked {
+  background: linear-gradient(180deg, #fff 0%, #f0f0f3 100%);
+  cursor: default;
+}
+.stu-thumb:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 3px;
+}
