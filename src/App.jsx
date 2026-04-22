@@ -10,10 +10,15 @@ const lines = [
   "My beaver"
 ];
 
-const placeholderImages = Array.from({ length: 7 }, (_, i) => ({
-  src: `https://placehold.co/1280x720?text=Photo+${i + 1}`,
-  alt: `Placeholder ${i + 1}`,
-}));
+const placeholderImages = [
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+]
 
 function App() {
   const [unlockDone, setUnlockDone] = useState(false);
