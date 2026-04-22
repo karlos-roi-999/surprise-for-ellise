@@ -11,13 +11,16 @@ export default function ZoomParallax({ images }) {
     offset: ["start start", "end end"],
   });
 
-  const scale0 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[0]]);
-  const scale1 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[1]]);
-  const scale2 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[2]]);
-  const scale3 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[3]]);
-  const scale4 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[4]]);
-  const scale5 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[5]]);
-  const scale6 = useTransform(scrollYProgress, [0, 1], [1, SCALE_FACTORS[6]]);
+  // Dead zone: zoom doesn't start until 30% through the section,
+  // so the images sit still for a couple of scrolls before anything happens
+  const ZOOM_START = 0.14;
+  const scale0 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[0]]);
+  const scale1 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[1]]);
+  const scale2 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[2]]);
+  const scale3 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[3]]);
+  const scale4 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[4]]);
+  const scale5 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[5]]);
+  const scale6 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[6]]);
   const scales = [scale0, scale1, scale2, scale3, scale4, scale5, scale6];
 
   return (

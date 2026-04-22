@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 .typewriter-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'SN Pro';
+  font-family: 'Quicksand';
   font-weight: 500;
   font-size: 100px;
-  color: rgb(66, 14, 14);
+  color: rgb(0, 0, 0);
 }
 
 .typing::after {

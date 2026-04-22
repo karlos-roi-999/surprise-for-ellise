@@ -10,8 +10,8 @@ const lines = [
   "My beaver"
 ];
 
-const placeholderImages = [
-  { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
+const images = [
+  { src: "../src/assets/IMG_9625.jpg", alt: "bellisima" },
   { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
   { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
   { src: "../src/assets/IMG_5179.jpg", alt: "bellisima" },
@@ -42,7 +42,7 @@ function App() {
 
       {typingDone && (
         <section id="parallax">
-          <ZoomParallax images={placeholderImages} />
+          <ZoomParallax images={images} />
         </section>
       )}
     </div>
