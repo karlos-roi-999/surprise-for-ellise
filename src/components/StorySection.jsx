@@ -2,10 +2,19 @@ import { motion } from "framer-motion";
 import Polaroid from "./Polaroid";
 import "./StorySection.css";
 
+import imgRow1 from "../assets/IMG_2569.jpg";
+import imgRow2 from "../assets/IMG_5179.jpg";
+import imgRow3 from "../assets/IMG_4345.jpg";
+import imgRow4 from "../assets/IMG_9625.JPG";
+import imgRow5 from "../assets/IMG_2479.jpg";
+import imgRow6 from "../assets/IMG_5153.jpg";
+import imgRow7 from "../assets/IMG_4861.jpg";
+import imgRow8 from "../assets/IMG_4684.jpg";
+
 const ROWS = [
   {
     side: "left",
-    src: "../src/assets/IMG_2569.JPG",
+    src: imgRow1,
     alt: "placeholder",
     rotation: -3,
     tapeColor: "rgba(255, 182, 193, 0.65)",
@@ -13,15 +22,15 @@ const ROWS = [
   },
   {
     side: "right",
-    src: "../src/assets/IMG_5179.jpg",
+    src: imgRow2,
     alt: "placeholder",
     rotation: 2.5,
     tapeColor: "rgba(170, 210, 185, 0.65)",
-    text: "Here's to making more fun memories together..."
+    text: "Here's to making more fun memories together...",
   },
   {
     side: "left",
-    src: "../src/assets/IMG_4345.jpg",
+    src: imgRow3,
     alt: "placeholder",
     rotation: -1.5,
     tapeColor: "rgba(255, 218, 140, 0.65)",
@@ -30,7 +39,7 @@ const ROWS = [
   {
     side: "right",
     rowAlign: "right",
-    src: "../src/assets/IMG_9625.JPG",
+    src: imgRow4,
     alt: "placeholder",
     rotation: 3,
     tapeColor: "rgba(180, 195, 235, 0.65)",
@@ -39,7 +48,7 @@ const ROWS = [
   {
     side: "left",
     rowAlign: "right",
-    src: "../src/assets/IMG_2479.jpg",
+    src: imgRow5,
     alt: "placeholder",
     rotation: -2,
     tapeColor: "rgba(210, 185, 230, 0.65)",
@@ -48,7 +57,7 @@ const ROWS = [
   {
     side: "right",
     rowAlign: "right",
-    src: "../src/assets/IMG_5153.jpg",
+    src: imgRow6,
     alt: "placeholder",
     rotation: 1.5,
     tapeColor: "rgba(255, 195, 165, 0.65)",
@@ -57,7 +66,7 @@ const ROWS = [
   {
     side: "left",
     rowAlign: "left",
-    src: "../src/assets/IMG_4861.jpg",
+    src: imgRow7,
     alt: "placeholder",
     rotation: 1.5,
     tapeColor: "rgba(255, 195, 165, 0.65)",
@@ -66,7 +75,7 @@ const ROWS = [
   {
     side: "right",
     rowAlign: "right",
-    src: "../src/assets/IMG_4684.jpg",
+    src: imgRow8,
     alt: "placeholder",
     rotation: 1.5,
     tapeColor: "rgba(255, 195, 165, 0.65)",

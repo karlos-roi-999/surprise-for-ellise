@@ -6,6 +6,14 @@ import StorySection from "./components/StorySection";
 import BirthdayStickers from "./components/BirthdayStickers";
 import "./App.css";
 
+import imgParallax1 from "./assets/42EE20B2-6EF3-47B8-AC82-B35989C9BE63.jpg";
+import imgParallax2 from "./assets/IMG_8894.jpg";
+import imgParallax3 from "./assets/IMG_9625.JPG";
+import imgParallax4 from "./assets/IMG_1051.jpg";
+import imgParallax5 from "./assets/IMG_1356.JPG";
+import imgParallax6 from "./assets/09503132-0100-49B3-9475-6DB3982A8776.jpg";
+import imgParallax7 from "./assets/IMG_4486.jpg";
+
 const lines = [
   "Today's your special day...",
   "Happy Birthday my love!",
@@ -13,13 +21,13 @@ const lines = [
 ];
 
 const images = [
-  { src: "../src/assets/42EE20B2-6EF3-47B8-AC82-B35989C9BE63.jpg", alt: "bellis" },
-  { src: "../src/assets/IMG_8894.jpg", alt: "img2" },
-  { src: "../src/assets/IMG_9625.jpg", alt: "img3" },
-  { src: "../src/assets/IMG_1051.jpg", alt: "img4" },
-  { src: "../src/assets/IMG_1356.jpg", alt: "img5" },
-  { src: "../src/assets/09503132-0100-49B3-9475-6DB3982A8776.jpg", alt: "img6" },
-  { src: "../src/assets/IMG_4486.jpg", alt: "img7" },
+  { src: imgParallax1, alt: "bellis" },
+  { src: imgParallax2, alt: "img2" },
+  { src: imgParallax3, alt: "img3" },
+  { src: imgParallax4, alt: "img4" },
+  { src: imgParallax5, alt: "img5" },
+  { src: imgParallax6, alt: "img6" },
+  { src: imgParallax7, alt: "img7" },
 ];
 
 function App() {
