@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import "./SlideToUnlock.css";
 
 /**
@@ -15,6 +15,10 @@ import "./SlideToUnlock.css";
  *
  * The single `useState(renderTick)` is bumped inside rAF solely to
  * trigger re-renders so the DOM reflects the current ref values.
+ *
+ * Width is responsive: the prop is a desktop cap; CSS (`max-width: 88vw`)
+ * shrinks the track on narrow phones. `measuredWidth` holds the actual
+ * rendered pixel width so drag math stays accurate at any viewport.
  */
 export default function SlideToUnlock({
   label = "Open for your surprise 🦫",
@@ -27,8 +31,23 @@ export default function SlideToUnlock({
   velocityThreshold = 0.9,
   velocityMinProgress = 0.35,
 }) {
+  const rootRef = useRef(null);
+  const [measuredWidth, setMeasuredWidth] = useState(width);
   const thumbSize = height - 8;
-  const maxTravel = width - thumbSize - 8;
+  const maxTravel = Math.max(0, measuredWidth - thumbSize - 8);
+
+  useLayoutEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const update = () => {
+      const rect = el.getBoundingClientRect();
+      if (rect.width > 0) setMeasuredWidth(rect.width);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // ---- ALL mutable state in refs (no stale closures) ----
   const xRef = useRef(0);
@@ -167,10 +186,14 @@ export default function SlideToUnlock({
   if (removed) return null;
 
   return (
-    <div className="stu-root" style={{ width, height, position: "relative" }}>
+    <div
+      ref={rootRef}
+      className="stu-root"
+      style={{ width, height, position: "relative" }}
+    >
       <div
         className="stu-track"
-        style={{ width, height }}
+        style={{ height }}
         onAnimationEnd={(e) => {
           if (e.animationName === "stu-fadeout") {
             setRemoved(true);

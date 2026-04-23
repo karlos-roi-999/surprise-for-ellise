@@ -32,8 +32,14 @@
 }
 
 .polaroid-img {
-  width: 280px;
+  width: clamp(200px, 60vw, 280px);
   aspect-ratio: 3 / 4;
   object-fit: cover;
   display: block;
+}
+
+@media (min-width: 768px) {
+  .polaroid-img {
+    width: 280px;
+  }
 }

@@ -4,11 +4,29 @@
   align-items: center;
   font-family: -apple-system, "SF Pro Display", BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-weight: 700;
-  font-size: clamp(44px, 6.5vw, 96px);
+  font-size: clamp(28px, 8vw, 96px);
   letter-spacing: -0.025em;
-  line-height: 1.07;
-  padding: 8vh 5vw;
+  line-height: 1.12;
+  padding: 6vh 5vw;
+  padding-left: max(5vw, var(--safe-left));
+  padding-right: max(5vw, var(--safe-right));
   text-align: center;
+  width: 100%;
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.tw-line {
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .typewriter-container {
+    font-size: clamp(44px, 6.5vw, 96px);
+    line-height: 1.07;
+    padding: 8vh 5vw;
+  }
 }
 
 .typing::after {

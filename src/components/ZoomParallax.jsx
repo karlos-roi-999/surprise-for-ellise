@@ -37,6 +37,8 @@ export default function ZoomParallax({ images }) {
                 src={src}
                 alt={alt || `Parallax image ${index + 1}`}
                 className="zp-image"
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
               />
             </div>
           </motion.div>
