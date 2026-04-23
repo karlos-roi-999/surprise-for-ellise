@@ -4,8 +4,13 @@ import "./Typewriter.css";
 const TYPING_SPEED = 60;   // ms per character
 const PAUSE_BETWEEN = 2000; // ms pause between lines
 
-export default function Typewriter({ lines = [], onComplete }) {
+export default function Typewriter({ lines = [], onComplete, onLineComplete }) {
   const containerRef = useRef(null);
+  // Keep a ref so the async loop always calls the latest callback without
+  // it appearing in the effect's dependency array (which would cancel the
+  // in-flight sequence on every re-render triggered by the callback itself).
+  const onLineCompleteRef = useRef(onLineComplete);
+  onLineCompleteRef.current = onLineComplete;
 
   useEffect(() => {
     if (!lines.length) return;
@@ -34,6 +39,7 @@ export default function Typewriter({ lines = [], onComplete }) {
         if (cancelled) return;
 
         div.classList.remove("typing");
+        onLineCompleteRef.current?.(i);
       }
 
       if (!cancelled) onComplete?.();

@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-
 .typewriter-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Quicksand';
-  font-weight: 500;
-  font-size: 100px;
-  color: rgb(0, 0, 0);
+  font-family: -apple-system, "SF Pro Display", BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6.5vw, 96px);
+  letter-spacing: -0.025em;
+  line-height: 1.07;
+  padding: 8vh 5vw;
+  text-align: center;
 }
 
 .typing::after {

@@ -13,7 +13,7 @@ export default function ZoomParallax({ images }) {
 
   // Dead zone: zoom doesn't start until 30% through the section,
   // so the images sit still for a couple of scrolls before anything happens
-  const ZOOM_START = 0.14;
+  const ZOOM_START = 0.1;
   const scale0 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[0]]);
   const scale1 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[1]]);
   const scale2 = useTransform(scrollYProgress, [ZOOM_START, 1], [1, SCALE_FACTORS[2]]);
